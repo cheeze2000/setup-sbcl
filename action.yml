@@ -1,0 +1,18 @@
+name: "Setup Steel Bank Common Lisp"
+description: "Setup SBCL (along with ASDF and Quicklisp beta)"
+branding:
+  icon: "arrow-right-circle"
+  color: "black"
+inputs:
+  version:
+    description: "SBCL version"
+    default: "2.2.8"
+runs:
+  using: "composite"
+  steps:
+    - run: echo "/home/runner/sbcl/bin" >> $GITHUB_PATH
+      shell: bash
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+    - run: install.sh ${{ inputs.version }}
+      shell: bash
